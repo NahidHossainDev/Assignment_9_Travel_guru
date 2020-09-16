@@ -1,0 +1,51 @@
+
+  .searchBox{
+    border: 1px solid white;
+    width: 370px;
+    height: 44px;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+  }
+  .searchIcon {
+      display: inline;
+      margin:0 7px;
+  }
+  .searchInput{
+    color: white;
+    width: 80%;
+    padding: 10px;
+    font-size: 18px;
+    background: transparent;
+    border: none;
+    outline: none;
+    }
+     .searchBox ::placeholder {
+      color: white
+    }
+    ul{
+        margin-left: 100px;
+        margin-right: 50px;
+        padding: 0;
+        display: inline-block; 
+    }
+    li{
+        display: inline-block;
+        list-style: none;
+         
+    }
+    li a{
+       color:white;
+        margin: 0 5px; 
+        text-decoration: none;
+        border-radius: 7px;
+        padding: 7px 7px 10px 7px;
+    }
+    li a:hover{   
+        background-color: #ffab23;
+    }
+    .loginBtn{
+        background:  #ffa91e;
+    }
+    

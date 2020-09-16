@@ -1,0 +1,27 @@
+.box{
+    color:white;
+}
+.boxPaper{
+    width:450px;
+    height: 380px;
+}
+form{
+    margin:20px;
+    padding:20px
+}
+.boxPaper input{
+    display:block;
+    margin-top: 20px;
+    padding:10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 300px;
+    font-size: 18px;
+}
+.error{
+    color:red
+}
+.submitBtn{
+    background-color: #ffab23;
+    color: white
+}
