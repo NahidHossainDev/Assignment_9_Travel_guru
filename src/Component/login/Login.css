@@ -1,0 +1,23 @@
+.logBox{
+    margin: 120px 0;
+    display:flex;
+    justify-content:center;
+  
+}
+.logInfo{
+    border: 2px solid lightgray;
+    padding: 30px;
+    border-radius: 10px;
+}
+.for{
+    margin-left: 100px;
+    color:orange;
+}
+.for2{
+    color:orange;
+    margin-left: 10px;
+}
+.for,
+.for2:hover{
+    cursor: pointer;
+}

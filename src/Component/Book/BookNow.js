@@ -1,19 +1,28 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { Container, Grid, Box, Paper, Input } from '@material-ui/core';
+import React, { useContext } from 'react';
+import { useParams, useHistory, Link } from 'react-router-dom';
+import { Container, Grid, Box, Paper, Button } from '@material-ui/core';
 import { allData } from '../data';
 import './BookNow.css';
 import MaterialUIPickers from './DatePicker';
 import { useForm } from "react-hook-form";
+import { ContextElement } from '../../App';
 
 const BookNow = () => {
-    const { id } = useParams();
 
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = (data) => console.log(data);
-    console.log(errors);
+  const [headerNav, setHeaderNav] = useContext(ContextElement);
+  setHeaderNav(false);
     
-    const placeDetail = allData.find(d => d.id = id);
+  const { id } = useParams();
+    let history = useHistory();
+  
+  const { register, handleSubmit, errors } = useForm();
+  
+    const onSubmit = (data) => {
+      console.log(data);
+      history.push(`/searchHotel/${id}`);
+    };
+  
+    const placeDetail = allData.find(d => d.id == id);
     const { placeName, detail } = placeDetail;
     return (
       <div className="main">
@@ -49,7 +58,11 @@ const BookNow = () => {
                         <span className="error">Destination is required</span>
                       )}
                       <MaterialUIPickers></MaterialUIPickers>
-                      <input type="submit" className="submitBtn" value="Book now"/>
+                        <input
+                          type="submit"
+                          className="submitBtn"
+                          value="Book now"
+                        />
                     </form>
                   </Paper>
                 </div>

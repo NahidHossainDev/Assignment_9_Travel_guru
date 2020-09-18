@@ -8,9 +8,23 @@
     margin: 0;
     padding: 0;
   }
+   .searchBoxBlack{
+    border: 1px solid black;
+    width: 370px;
+    height: 44px;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+  }
   .searchIcon {
       display: inline;
       margin:0 7px;
+  }
+  .searchIconBlack{
+    display: inline;
+      margin:0 7px;
+      color:black
   }
   .searchInput{
     color: white;
@@ -21,8 +35,20 @@
     border: none;
     outline: none;
     }
+     .searchInputBlack{
+    color: black;
+    width: 80%;
+    padding: 10px;
+    font-size: 18px;
+    background: transparent;
+    border: none;
+    outline: none;
+    }
      .searchBox ::placeholder {
       color: white
+    }
+    .searchBoxBlack ::placeholder {
+      color: black
     }
     ul{
         margin-left: 100px;
@@ -37,6 +63,13 @@
     }
     li a{
        color:white;
+        margin: 0 5px; 
+        text-decoration: none;
+        border-radius: 7px;
+        padding: 7px 7px 10px 7px;
+    }
+      .liBlack a{
+       color:black;
         margin: 0 5px; 
         text-decoration: none;
         border-radius: 7px;

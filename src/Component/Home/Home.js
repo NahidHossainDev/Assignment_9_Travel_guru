@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Home.css';
 import Grid from "@material-ui/core/Grid";
 import { Paper, Container } from '@material-ui/core';
 import { data } from '../data';
 import { Link } from 'react-router-dom';
+import { ContextElement } from '../../App';
 
 const Home = () => {
-    
+  const [headerNav, setHeaderNav] = useContext(ContextElement);
+  setHeaderNav(false);
+  
     return (
       <div className="main">
         <Container>
