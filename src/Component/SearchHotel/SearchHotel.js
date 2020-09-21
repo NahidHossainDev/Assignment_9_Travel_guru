@@ -4,7 +4,7 @@ import { Container, Grid, Box } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import hotelData, { allData } from '../data';
 import Hotel from './Hotel/Hotel';
-import GoogleMap from '../GoogleMap/GoogleMap';
+import GoogleMaps from '../GoogleMap/GoogleMap';
 
 const SearchHotel = () => {
     const { id } = useParams();
@@ -32,7 +32,7 @@ const SearchHotel = () => {
             </Grid>
             <Grid item xs={6} className="gridContainer">
               <Box mt={25} className="">
-                <GoogleMap></GoogleMap>
+                <GoogleMaps></GoogleMaps>
               </Box>
             </Grid>
           </Grid>

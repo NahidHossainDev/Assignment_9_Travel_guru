@@ -14,7 +14,6 @@ const Home = () => {
       <div className="main">
         <Container>
           <Grid container spacing={3} className="gridContainer">
-            {/* {data.map(p => <PlacesItem data ={p} key={p.id}></PlacesItem>)} */}
             <Grid item xs={4} className="gridContainer">
               <Link to="/bookNow/1">
                 <Paper
@@ -48,13 +47,4 @@ const Home = () => {
     );
 };
 
-// const PlacesItem = (props) => {
-//     const { placeName, img } = props.data
-//     console.log(props.data)
-//     return (
-//       <Grid item xs={4}>
-//         <Paper className="paper" style={{backgroundImage:`${img}`}}></Paper>
-//       </Grid>
-//     );
-// }
 export default Home;

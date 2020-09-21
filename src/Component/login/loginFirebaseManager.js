@@ -7,9 +7,8 @@ export const initializeLoginFramework = () => {
   firebase.initializeApp(firebaseConfig);
 };
 
-const provider = new firebase.auth.GoogleAuthProvider();
-
 export const handleGoogleSignIn = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
   return firebase
     .auth()
     .signInWithPopup(provider)
@@ -44,7 +43,6 @@ export const handleFacebookSignin = () => {
        return isSignIn;
      })
      .catch((error) => console.log(error, error.message));
-
 }
 
 export const handleSignOut = () => {

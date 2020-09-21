@@ -32,7 +32,6 @@ const Hotel = (props) => {
     return (
       <div>
         <Grid container>
-
             <Grid item xs={5}>
               <img src={img} alt="" style={style.img} />
             </Grid>
@@ -48,8 +47,7 @@ const Hotel = (props) => {
                 </span>
                 <span style={style.span}>${price}</span>
               </div>
-            </Grid>
-        
+            </Grid>     
         </Grid>
       </div>
     );

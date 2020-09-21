@@ -114,23 +114,23 @@ const Login = () => {
   }
   
 
-    const style = {
+  const style = {
       loginBtn: {
-        border: "1px solid gray",
-        borderRadius: "50px",
-        width: "380px",
-        justifyContent: "center",
+      border: "1px solid gray",
+      borderRadius: "50px",
+      width: "380px",
+      justifyContent: "center",
       },
       icon: {
-        width: "25px",
-        marginRight: "50px",
+      width: "25px",
+      marginRight: "50px",
       },
       textField: {
-        width: "400px",
+      width: "400px",
       },
       btn: {
-        width: "400px",
-        backgroundColor: "#F9A51A",
+      width: "400px",
+      backgroundColor: "#F9A51A",
       },
     };
     return (
@@ -144,21 +144,15 @@ const Login = () => {
                 handle={handle}
                 handleOnBlur={handleBlur}
                 handleSubmit={handleSubmit}
-                // loginInfo={userLoginInfo}
-                // setLoginInfo={setUserLoginInfo}
               ></LoginElement>
             ) : (
               <SignupElement
                 handle={handle}
                 handleOnBlur={handleBlur}
-                // userLoginInfo={userLoginInfo}
-                // setUserLoginInfo={setUserLoginInfo}
                 userInfo={user}
-                // setUserInfo={setUser}
                 handleSubmit={handleSubmit}
               ></SignupElement>
             )}
-
             <hr />
             <br />
             <Button style={style.loginBtn} onClick={facebookSignIn}>

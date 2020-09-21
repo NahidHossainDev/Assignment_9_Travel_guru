@@ -8,9 +8,7 @@ import {
 } from "@material-ui/pickers";
 import { ContextElement } from "../../App";
 
-
 export default function MaterialUIPickers(props) {
-  // The first commit of Material-UI
   const [selectedDate1, setSelectedDate1] = React.useState(
     new Date("2020-08-18T21:11:54")
   );
@@ -19,26 +17,23 @@ export default function MaterialUIPickers(props) {
   );
 
   const [headerNav, setHeaderNav, date, setDate] =useContext(ContextElement)
-  
-  
   const handleDateChange = (date) => {
       setSelectedDate1(date);
   };
    const handleDateChange2 = (date) => {
       setSelectedDate2(date);
   };
+  
   let result
  const totalDays = () => {
    let difference = selectedDate2.getTime() - selectedDate1.getTime();
    let msInDay = 1000 * 3600 * 24;
    result = Math.round(difference / msInDay);
   setDate(result);
-   
   };
+
   totalDays();
   
- 
-
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container>
