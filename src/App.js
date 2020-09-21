@@ -7,6 +7,7 @@ import BookNow from './Component/Book/BookNow';
 import NotFound from './Component/NotFound';
 import SearchHotel from './Component/SearchHotel/SearchHotel';
 import Login from './Component/login/Login';
+import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 
 
 
@@ -16,24 +17,11 @@ function App() {
 
   const [headerNav, setHeaderNav] = useState(false)
   const [days, setDays] = useState([])
-   const [userLoginInfo, setUserLoginInfo] = useState({
-     name: "",
-     photoURL: "",
-     email: "",
-     isLogin: false,
-     error: "",
-   });
+   const [userLogIn, setUserLogIn] = useState({});
 
   return (
     <ContextElement.Provider
-      value={[
-        headerNav,
-        setHeaderNav,
-        days,
-        setDays,
-        userLoginInfo,
-        setUserLoginInfo,
-      ]}
+      value={[headerNav, setHeaderNav, days, setDays, userLogIn, setUserLogIn]}
     >
       <Router>
         <Navbar></Navbar>
@@ -44,9 +32,9 @@ function App() {
           <Route path="/bookNow/:id">
             <BookNow></BookNow>
           </Route>
-          <Route path="/searchHotel/:id">
+          <PrivateRoute path="/searchHotel/:id">
             <SearchHotel />
-          </Route>
+          </PrivateRoute>
           <Route path="/login">
             <Login></Login>
           </Route>

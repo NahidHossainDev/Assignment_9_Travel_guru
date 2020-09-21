@@ -9,15 +9,15 @@
     padding: 30px;
     border-radius: 10px;
 }
-.for{
+.forget{
     margin-left: 100px;
     color:orange;
 }
-.for2{
+.createAcc{
     color:orange;
     margin-left: 10px;
 }
-.for,
-.for2:hover{
+.forget,
+.createAcc:hover{
     cursor: pointer;
 }

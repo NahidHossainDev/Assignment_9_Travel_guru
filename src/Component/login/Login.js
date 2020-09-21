@@ -6,9 +6,19 @@ import fbIcon from '../images/Icon/fb.png';
 import googleIcon from '../images/Icon/google.png';
 import LoginElement from '../LoginElement./LoginElement';
 import SignupElement from '../SignupElement./SignupElement';
-import { google } from './loginFirebaseManager';
+import {
+  handleFacebookSignin,
+  signInWithEmailAndPassword,
+  initializeLoginFramework,
+  createUserWithEmailAndPassword,
+  handleSignOut,
+  handleGoogleSignIn,
+} from "./loginFirebaseManager";
+import { useHistory, useLocation } from 'react-router-dom';
 
+ initializeLoginFramework();
 const Login = () => {
+
   const [
     headerNav,
     setHeaderNav,
@@ -19,34 +29,90 @@ const Login = () => {
   ] = useContext(ContextElement);
 
   setHeaderNav(true);
-  
-  const [signIn, setSignIn] = useState(true);
+
+  const history = useHistory();
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
+
+  const [newUser, setNewUser] = useState(true);
   const handle = () => {
-    setSignIn(!signIn)
+    setNewUser(!newUser)
   }
+  const [user, setUser] = useState({
+    isLogin: false,
+    name: "",
+    email: "",
+    password: "",
+    photo: "",
+    error: "",
+    success: false,
+    newUser: newUser,
+  });
 
-  
+  const handleSubmit = (e) => {
+    if (!newUser && user.email && user.password) {
+      createUserWithEmailAndPassword(user.name, user.email, user.password).then(
+        (res) => {
+          console.log(res)
+          setUser(res);
+          setUserLoginInfo(res);
+          history.replace(from);
+        }
+      );
+    }
+    if (newUser && user.email && user.password) {
+      console.log('signIn is clicked')
+      signInWithEmailAndPassword(user.email, user.password).then((res) => {
+        console.log(res)
+        setUser(res);
+        setUserLoginInfo(res);
+        history.replace(from);
+      });
+    }
+    e.preventDefault();
+  };
+  const GoogleSignIn = () => {
+    handleGoogleSignIn()
+    .then((res) => {
+     setUser(res);
+     setUserLoginInfo(res);
+      history.replace(from);
+    });
+  };
 
-  const googleSignIn = () => {
-    console.log('google sign is clicked')
-      google()
-    .then(res => {
-      const {displayName, photoURL, email} = res.user
-      console.log(res.user)
-      const signIn = {
-        name: displayName,
-        photoURL: photoURL,
-        email: email,
-        isLogin: true,
-      }
-      setUserLoginInfo(signIn);
-        
-   })
-  }
+  const signOut = () => {
+    handleSignOut().then((res) => {
+      setUser(res);
+     setUserLoginInfo(res);
+    });
+  };
+
+  let filedValidation = true;
+  const handleBlur = (event) => {
+    if (event.target.name === "email") {
+      filedValidation = /\S+@\S+\.\S+/.test(event.target.value);
+    }
+    if (event.target.name === "password") {
+      const passwordLength = event.target.value.length > 6;
+      const passwordHasNumber = /\d{1}/.test(event.target.value);
+      filedValidation = passwordLength && passwordHasNumber;
+    }
+    if (filedValidation) {
+      const newUserInfo = { ...user };
+      newUserInfo[event.target.name] = event.target.value;
+      setUser(newUserInfo);
+    }
+  };
 
   const facebookSignIn = () => {
-     console.log("facebook sign is clicked");
+    handleFacebookSignin().then((res) => {
+      console.log(res)
+      setUser(res);
+      setUserLoginInfo(res);
+      history.replace(from);
+    });
   }
+  
 
     const style = {
       loginBtn: {
@@ -68,25 +134,45 @@ const Login = () => {
       },
     };
     return (
-      <div className="logBox">
-        <div className="logInfo">
-          {signIn ? <LoginElement handle ={handle}></LoginElement>
-          : <SignupElement handle ={handle}></SignupElement>}
-          
-          <hr />
-          <br />
-          <Button style={style.loginBtn} onClick={facebookSignIn}>
-            <img style={style.icon} src={fbIcon} alt="" />
-            Continue with facebook
-          </Button>
-          <br />
-          <br />
-          <Button style={style.loginBtn} onClick={googleSignIn}>
-            <img style={style.icon} src={googleIcon} alt="" />
-            Continue with google
-          </Button>
-        </div>
-       
+      <div className="logBox" style={{ textAlign: "center" }}>
+        {userLoginInfo.isLogin ? (
+          <Button style={style.loginBtn} color ='secondary' onClick ={signOut}>Sign Out</Button>
+        ) : (
+          <div className="logInfo">
+            {newUser ? (
+              <LoginElement
+                handle={handle}
+                handleOnBlur={handleBlur}
+                handleSubmit={handleSubmit}
+                // loginInfo={userLoginInfo}
+                // setLoginInfo={setUserLoginInfo}
+              ></LoginElement>
+            ) : (
+              <SignupElement
+                handle={handle}
+                handleOnBlur={handleBlur}
+                // userLoginInfo={userLoginInfo}
+                // setUserLoginInfo={setUserLoginInfo}
+                userInfo={user}
+                // setUserInfo={setUser}
+                handleSubmit={handleSubmit}
+              ></SignupElement>
+            )}
+
+            <hr />
+            <br />
+            <Button style={style.loginBtn} onClick={facebookSignIn}>
+              <img style={style.icon} src={fbIcon} alt="" />
+              Continue with facebook
+            </Button>
+            <br />
+            <br />
+            <Button style={style.loginBtn} onClick={GoogleSignIn}>
+              <img style={style.icon} src={googleIcon} alt="" />
+              Continue with google
+            </Button>
+          </div>
+        )}
       </div>
     );
 };

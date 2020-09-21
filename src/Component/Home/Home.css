@@ -1,5 +1,5 @@
 .main{
-    height: 120vh;
+    min-height: 120vh;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('https://i.postimg.cc/Cxvwq80t/Rectangle-1.png');
